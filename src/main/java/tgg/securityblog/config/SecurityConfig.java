@@ -17,7 +17,7 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests(ahr -> ahr
                 .requestMatchers("/test").authenticated()
-                .anyRequest().permitAll());
+                .requestMatchers("/login","/error","/").permitAll());
 
         httpSecurity.csrf(c->c.disable());
 
@@ -34,6 +34,10 @@ public class SecurityConfig {
                 .clearAuthentication(true)
                 .deleteCookies("JSESSIONID"));
 
+        httpSecurity.sessionManagement(session -> session
+                .invalidSessionUrl("/")
+                .maximumSessions(1)
+                .maxSessionsPreventsLogin(true));
 
         return httpSecurity.build();
     }

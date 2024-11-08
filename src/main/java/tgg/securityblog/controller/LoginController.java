@@ -3,6 +3,7 @@ package tgg.securityblog.controller;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.web.authentication.session.SessionAuthenticationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -33,7 +34,12 @@ public class LoginController {
 
         AuthenticationException exception = (AuthenticationException)request.getAttribute("exception");
         if(exception != null){
-            bindingResult.reject("loginError");
+            if(exception instanceof SessionAuthenticationException){
+                bindingResult.reject("multipleLogin");
+            }
+            else{
+                bindingResult.reject("loginError");
+            }
         }
 
         if(bindingResult.hasErrors()){
