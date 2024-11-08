@@ -20,7 +20,6 @@ public class LoginController {
     public String showLoginPage(@RequestParam(required = false, value = "logout") String logout, Model model){
 
         if(logout != null){
-            System.out.println("logout");
             model.addAttribute("logoutMessage", "로그아웃 성공");
         }
 
