@@ -22,7 +22,6 @@ public class LoginController {
 
         if(logout != null){
             model.addAttribute("logoutMessage", "로그아웃 성공");
-            System.out.println();
         }
 
         model.addAttribute("loginRequest", new LoginRequestDTO());
