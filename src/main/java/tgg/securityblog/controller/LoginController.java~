@@ -35,7 +35,6 @@ public class LoginController {
         AuthenticationException exception = (AuthenticationException)request.getAttribute("exception");
         if(exception != null){
             if(exception instanceof SessionAuthenticationException){
-                System.out.println(exception);
                 bindingResult.reject("multipleLogin");
             }
             else{
