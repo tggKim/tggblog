@@ -24,7 +24,14 @@ public class UserAndUserAuthorityInitializer {
                 .nickname("tgg")
                 .build();
 
-        User savedcUser = userService.saveUser(user);
+        User user2 = User.builder()
+                .username("scie")
+                .password("12345")
+                .nickname("tgghuhu")
+                .build();
+
+        User savedUser = userService.saveUser(user);
+        User savedUser2 = userService.saveUser(user2);
 
         UserAuthority userAuthority01 = new UserAuthority("ROLE_USER");
         UserAuthority userAuthority02 = new UserAuthority("ROLE_ADMIN");
@@ -32,13 +39,24 @@ public class UserAndUserAuthorityInitializer {
         UserAuthority savedUserAuthority02 = userAuthorityService.saveUserAuthority(userAuthority02);
 
         UserAuthorityMapping userAuthorityMapping = new UserAuthorityMapping();
-        userAuthorityMapping.setUser(savedcUser);
+        userAuthorityMapping.setUser(savedUser);
         userAuthorityMapping.setUserAuthority(savedUserAuthority01);
         userAuthorityMappingService.saveUserAuthorityMapping(userAuthorityMapping);
 
         userAuthorityMapping = new UserAuthorityMapping();
-        userAuthorityMapping.setUser(savedcUser);
+        userAuthorityMapping.setUser(savedUser);
         userAuthorityMapping.setUserAuthority(savedUserAuthority02);
         userAuthorityMappingService.saveUserAuthorityMapping(userAuthorityMapping);
+
+        userAuthorityMapping = new UserAuthorityMapping();
+        userAuthorityMapping.setUser(savedUser2);
+        userAuthorityMapping.setUserAuthority(savedUserAuthority01);
+        userAuthorityMappingService.saveUserAuthorityMapping(userAuthorityMapping);
+
+        userAuthorityMapping = new UserAuthorityMapping();
+        userAuthorityMapping.setUser(savedUser2);
+        userAuthorityMapping.setUserAuthority(savedUserAuthority02);
+        userAuthorityMappingService.saveUserAuthorityMapping(userAuthorityMapping);
+
     }
 }

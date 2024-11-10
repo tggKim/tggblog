@@ -19,7 +19,7 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests(ahr -> ahr
                 .requestMatchers("/test").authenticated()
-                .requestMatchers("/login","/error","/").permitAll());
+                .requestMatchers("/login","/error","/","/message","/css/**").permitAll());
 
         httpSecurity.csrf(c->c.disable());
 

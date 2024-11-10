@@ -2,33 +2,39 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
-
+        <link rel="stylesheet" href="/css/bootstrap.css">
+        <link rel="icon" href="data:,">
         <title>Login</title>
+        <style>
+            .error{
+                color : red;
+            }
+        </style>
     </head>
-    <body>
-        <form th:action method="post" th:object="${loginRequest}">
+    <body style="text-align:center">
+        <h3>로그인</h3>
+        <form th:action method="post" th:object="${loginRequest}" >
 
             <div th:if="${logoutMessage}"
                 th:text="${logoutMessage}">
             </div>
 
-            아이디 <input type="text" name="username" th:field="*{username}">
-            <br>
-            <div  th:errors="*{username}">
+            <input type="text" name="username" th:field="*{username}" class="form-control" placeholder="아이디">
+            <div  th:errors="*{username}" class="error">
                 username 오류
             </div>
 
-            비밀번호 <input type="password" name="password" th:fiedl="*{password}">
-            <br>
-            <div  th:errors="*{password}">
+            <input type="password" name="password" th:fiedl="*{password}" class="form-control" placeholder="비밀번호">
+            <div  th:errors="*{password}" class="error">
                 password 오류
             </div>
 
             <div th:if="${#fields.hasGlobalErrors()}">
-                <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">전체 오류 메시지</p>
+                <p th:each="err : ${#fields.globalErrors()}" th:text="${err}" class="alert alert-danger">전체 오류 메시지</p>
             </div>
 
-            <button type="submit">로그인</button>
+            <button type="submit" class="btn btn-primary">로그인</button>
+            <button type="button" th:onclick="|location.href='@{/}'|" class="btn btn-secondary">취소</button>
         </form>
     </body>
 </html>
