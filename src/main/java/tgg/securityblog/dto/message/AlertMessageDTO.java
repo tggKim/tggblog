@@ -1,4 +1,4 @@
-package tgg.securityblog.dto;
+package tgg.securityblog.dto.message;
 
 import lombok.Getter;
 import lombok.Setter;

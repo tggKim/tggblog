@@ -1,4 +1,4 @@
-package tgg.securityblog.dto;
+package tgg.securityblog.dto.login;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;

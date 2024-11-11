@@ -18,6 +18,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
+    private final UserAuthorityService userAuthorityService;
+    private final UserAuthorityMappingService userAuthorityMappingService;
     private final PasswordEncoder passwordEncoder;
 
     public User findUserById(Long id){
@@ -30,7 +32,16 @@ public class UserService {
 
     public User saveUser(User user){
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
+        User savedUser = userRepository.save(user);
+
+        UserAuthority userAuthority = userAuthorityService.findUserAuthorityById(1L);
+
+        UserAuthorityMapping userAuthorityMapping = new UserAuthorityMapping();
+        userAuthorityMapping.setUser(savedUser);
+        userAuthorityMapping.setUserAuthority(userAuthority);
+        userAuthorityMappingService.saveUserAuthorityMapping(userAuthorityMapping);
+
+        return savedUser;
     }
 
     @Transactional
@@ -60,5 +71,9 @@ public class UserService {
 
     public boolean existByUsername(String username){
         return userRepository.existsByUsername(username);
+    }
+
+    public boolean existByNickname(String nickname){
+        return userRepository.existsByNickname(nickname);
     }
 }

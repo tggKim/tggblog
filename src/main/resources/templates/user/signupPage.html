@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="icon" href="data:,">
+    <title>Login</title>
+    <style>
+        .error{
+            color : red;
+        }
+        .button-container {
+            display: flex;
+            gap: 3px;
+        }
+    </style>
+</head>
+<body style="text-align:center; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0;">
+<div>
+    <h1 style="font-size: 3rem;">회원 가입</h1>
+    <form th:action method="post" th:object="${signupUser}" style="width: 400px;">
+
+
+
+
+        <input type="text" name="username" th:field="*{username}" th:classappend="${#fields.hasErrors('username')} ? 'form-control is-invalid form-control-lg' : 'form-control form-control-lg'" placeholder="아이디" style="margin-top: 5px;">
+        <div  th:errors="*{username}" class="invalid-feedback">
+            username 오류
+        </div>
+
+
+        <input type="password" name="password" th:field="*{password}" th:classappend="${#fields.hasErrors('password')} ? 'form-control is-invalid form-control-lg' : 'form-control form-control-lg'" placeholder="비밀번호" style="margin-top: 5px;">
+        <div  th:errors="*{password}" class="invalid-feedback">
+            password 오류
+        </div>
+
+        <input type="text" name="email" th:field="*{email}" th:classappend="${#fields.hasErrors('email')} ? 'form-control is-invalid form-control-lg' : 'form-control form-control-lg'" placeholder="email" style="margin-top: 5px;">
+        <div  th:errors="*{email}" class="invalid-feedback">
+            email 오류
+        </div>
+
+        <input type="text" name="nickname" th:field="*{nickname}" th:classappend="${#fields.hasErrors('nickname')} ? 'form-control is-invalid form-control-lg' : 'form-control form-control-lg'" placeholder="닉네임" style="margin-top: 5px;">
+        <div  th:errors="*{nickname}" class="invalid-feedback">
+            nickname 오류
+        </div>
+
+        <div class="button-container" style="margin-top: 5px;">
+            <button type="submit" class="btn btn-primary btn-lg" style="flex:1">회원 가입</button>
+            <button type="button" th:onclick="|location.href='@{/}'|" class="btn btn-secondary btn-lg" style="flex:1">취소</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -7,6 +7,7 @@ import tgg.securityblog.entity.UserAuthority;
 import tgg.securityblog.repository.UserAuthorityRepository;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @Service
@@ -16,6 +17,10 @@ public class UserAuthorityService {
 
     public UserAuthority saveUserAuthority(UserAuthority userAuthority){
         return userAuthorityRepository.save(userAuthority);
+    }
+
+    public UserAuthority findUserAuthorityById(Long id){
+        return userAuthorityRepository.findById(id).orElseThrow(() -> new NoSuchElementException("해당 id의 권한을 찾을 수 없습니다."));
     }
 
     public List<String> findAllUserAuthorityByUserId(Long userId){

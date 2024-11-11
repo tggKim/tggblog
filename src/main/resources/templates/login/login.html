@@ -9,32 +9,54 @@
             .error{
                 color : red;
             }
+            .button-container {
+                display: flex;
+                gap: 3px;
+            }
         </style>
     </head>
-    <body style="text-align:center">
-        <h3>로그인</h3>
-        <form th:action method="post" th:object="${loginRequest}" >
+    <body style="text-align:center; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0;">
+        <div>
+            <h1 style="font-size: 3rem;">로그인</h1>
+            <form th:action method="post" th:object="${loginRequest}" style="width: 400px;">
 
-            <div th:if="${logoutMessage}"
-                th:text="${logoutMessage}">
-            </div>
+                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                    <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                    </symbol>
+                    <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                    </symbol>
+                    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                    </symbol>
+                </svg>
 
-            <input type="text" name="username" th:field="*{username}" class="form-control" placeholder="아이디">
-            <div  th:errors="*{username}" class="error">
-                username 오류
-            </div>
+                <div th:if="${logoutMessage}" class="alert alert-success d-flex align-items-center" role="alert" style="margin-bottom: 0px;">
+                    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+                    <div th:text="${logoutMessage}">
+                    </div>
+                </div>
 
-            <input type="password" name="password" th:fiedl="*{password}" class="form-control" placeholder="비밀번호">
-            <div  th:errors="*{password}" class="error">
-                password 오류
-            </div>
+                <input type="text" name="username" th:field="*{username}" th:classappend="${#fields.hasErrors('username') || #fields.hasGlobalErrors()} ? 'form-control is-invalid form-control-lg' : 'form-control form-control-lg'" placeholder="아이디" style="margin-top: 5px;">
+                <div  th:errors="*{username}" class="invalid-feedback">
+                    username 오류
+                </div>
 
-            <div th:if="${#fields.hasGlobalErrors()}">
-                <p th:each="err : ${#fields.globalErrors()}" th:text="${err}" class="alert alert-danger">전체 오류 메시지</p>
-            </div>
+                <input type="password" name="password" th:field="*{password}" th:classappend="${#fields.hasErrors('password') || #fields.hasGlobalErrors()} ? 'form-control is-invalid form-control-lg' : 'form-control form-control-lg'" placeholder="비밀번호" style="margin-top: 5px;">
+                <div  th:errors="*{password}" class="invalid-feedback">
+                    password 오류
+                </div>
 
-            <button type="submit" class="btn btn-primary">로그인</button>
-            <button type="button" th:onclick="|location.href='@{/}'|" class="btn btn-secondary">취소</button>
-        </form>
+                <div th:if="${#fields.hasGlobalErrors()}">
+                    <input class="form-control is-invalid" hidden="hidden">
+                    <p th:each="err : ${#fields.globalErrors()}" th:text="${err}" class="invalid-feedback" style="margin-bottom: 0;">전체 오류 메시지</p>
+                </div>
+                <div class="button-container" style="margin-top: 5px;">
+                    <button type="submit" class="btn btn-primary btn-lg" style="flex:1">로그인</button>
+                    <button type="button" th:onclick="|location.href='@{/}'|" class="btn btn-secondary btn-lg" style="flex:1">취소</button>
+                </div>
+            </form>
+        </div>
     </body>
 </html>

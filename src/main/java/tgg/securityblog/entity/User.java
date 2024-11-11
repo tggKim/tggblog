@@ -21,10 +21,11 @@ import java.util.Set;
 public class User {
 
     @Builder
-    public User(String username, String password, String nickname){
+    public User(String username, String password, String nickname, String email){
         this.username = username;
         this.password = password;
         this.nickname = nickname;
+        this.email = email;
     }
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,6 +36,8 @@ public class User {
     private String password;
 
     private String nickname;
+
+    private String email;
 
     @OneToMany(mappedBy = "user")
     private List<UserAuthorityMapping> userAuthorityMappings = new ArrayList<>();
