@@ -1,6 +1,7 @@
 package tgg.securityblog.config;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import tgg.securityblog.interceptor.LoginInterceptor;
@@ -13,4 +14,5 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .addPathPatterns("/login")
                 .excludePathPatterns("/error");
     }
+
 }

@@ -31,7 +31,11 @@
     </script>
 </head>
 <body style="margin : 20px">
-<h1><span>어서오세요! </span><!--/*<span th:text="${user.nickname}"></span><img th:src="|/image/${user.getFileImage()}|" width="70" height="70" style="position: absolute; right: 10px; top: 8px;"/>*/--></h1>
+<h1>
+    <span>어서오세요! </span>
+    <span sec:authorize="isAuthenticated()" th:text="${user.nickname}"></span>
+    <img sec:authorize="isAuthenticated()" th:src="@{/image/{savedFilename}(savedFilename=${user.savedFilename})}" width="70" height="70" style="position: absolute; right: 10px; top: 8px;"/>
+</h1>
 <hr>
 
 <div style="display: flex; justify-content: space-between;">
@@ -41,7 +45,7 @@
         <button sec:authorize="isAnonymous()" th:onclick="|location.href='@{/login}'|" type="button" class="btn btn-primary">로그인</button>
         <button sec:authorize="isAnonymous()" th:onclick="|location.href='@{/signup}'|" type="button" class="btn btn-primary">회원 가입</button>
         <button sec:authorize="isAuthenticated()" type="button" class="btn btn-primary">포스트 작성</button>
-        <button sec:authorize="isAuthenticated()" type="button" class="btn btn-primary">유저 정보</button>
+        <button sec:authorize="isAuthenticated()" th:onclick="|location.href='@{/user}'|" type="button" class="btn btn-primary">유저 정보</button>
         <button sec:authorize="isAuthenticated()" type="submit" class="btn btn-primary">로그아웃</button>
     </form>
 </div>

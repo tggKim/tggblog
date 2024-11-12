@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="icon" href="data:,">
-    <title>Login</title>
+    <title>signup</title>
     <style>
         .error{
             color : red;
@@ -18,10 +18,7 @@
 <body style="text-align:center; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0;">
 <div>
     <h1 style="font-size: 3rem;">회원 가입</h1>
-    <form th:action method="post" th:object="${signupUser}" style="width: 400px;">
-
-
-
+    <form th:action method="post" th:object="${signupUser}" style="width: 400px;" enctype="multipart/form-data">
 
         <input type="text" name="username" th:field="*{username}" th:classappend="${#fields.hasErrors('username')} ? 'form-control is-invalid form-control-lg' : 'form-control form-control-lg'" placeholder="아이디" style="margin-top: 5px;">
         <div  th:errors="*{username}" class="invalid-feedback">
@@ -42,6 +39,14 @@
         <input type="text" name="nickname" th:field="*{nickname}" th:classappend="${#fields.hasErrors('nickname')} ? 'form-control is-invalid form-control-lg' : 'form-control form-control-lg'" placeholder="닉네임" style="margin-top: 5px;">
         <div  th:errors="*{nickname}" class="invalid-feedback">
             nickname 오류
+        </div>
+
+        <label for="formFileLg" class="form-label" style="margin: 5px;">프로필 사진 선택</label>
+        <input type="file" name="image" th:classappend="${#fields.hasGlobalErrors()} ? 'form-control is-invalid form-control-lg' : 'form-control form-control-lg'" id="formFileLg">
+
+        <div th:if="${#fields.hasGlobalErrors()}">
+            <input class="form-control is-invalid" hidden="hidden">
+            <p th:each="err : ${#fields.globalErrors()}" th:text="${err}" class="invalid-feedback" style="margin-bottom: 0;">전체 오류 메시지</p>
         </div>
 
         <div class="button-container" style="margin-top: 5px;">

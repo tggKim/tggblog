@@ -44,7 +44,7 @@ public class UserController {
 
         User savedUser = userService.saveUser(signupUser.getUser());
         saveImageFile(savedUser, signupUser.getImage());
-
+        
         return "redirect:/";
     }
 
