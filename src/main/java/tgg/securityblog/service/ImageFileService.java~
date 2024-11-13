@@ -81,7 +81,7 @@ public class ImageFileService {
             int index = uploadFilename.lastIndexOf(".");
             savedFilename = UUID.randomUUID() + uploadFilename.substring(index);
 
-            //기존의 프로필이 기본 이미지가 아니라면 이미지 삭제
+            //기존의 프로필이 기본 이미지가 아니라면
             if(!findImageFile.getSavedFilename().equals("user.png")){
                 File deleteFile = new File(getFullPath(findImageFile.getSavedFilename()));
                 deleteFile.delete();

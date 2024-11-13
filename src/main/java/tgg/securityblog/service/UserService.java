@@ -44,19 +44,28 @@ public class UserService {
         return savedUser;
     }
 
-    @Transactional
-    public User updateUserNickname(String username, String nickname){
-        User findUser = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("해당 아이디의 유저가 존재하지 않습니다"));
-        findUser.setNickname(nickname);
-        return findUser;
+    public boolean isPasswordCorrect(String username, String password){
+        User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("해당 아이디의 유저가 존재하지 않습니다"));
+        return passwordEncoder.matches(password, user.getPassword());
     }
 
     @Transactional
-    public User updateUserPassword(String username, String password){
+    public User updateUserNickname(User user, String nickname){
+        user.setNickname(nickname);
+        return user;
+    }
+
+    @Transactional
+    public User updateUserPassword(User user, String password){
         String encodePassword = passwordEncoder.encode(password);
-        User findUser = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("해당 아이디의 유저가 존재하지 않습니다"));
-        findUser.setPassword(encodePassword);
-        return findUser;
+        user.setPassword(encodePassword);
+        return user;
+    }
+
+    @Transactional
+    public User updateUserEmail(User user, String email){
+        user.setEmail(email);
+        return user;
     }
 
     @Transactional
@@ -75,5 +84,9 @@ public class UserService {
 
     public boolean existByNickname(String nickname){
         return userRepository.existsByNickname(nickname);
+    }
+
+    public boolean existByEmail(String email){
+        return userRepository.existsByEmail(email);
     }
 }

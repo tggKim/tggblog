@@ -26,7 +26,7 @@ public class SecurityConfig {
         httpSecurity.authorizeHttpRequests(ahr -> ahr
                 .requestMatchers("/test").authenticated()
                 .requestMatchers("/login","/error","/","/message","/css/**","/signup").permitAll()
-                .requestMatchers("/user").hasRole("USER")
+                .requestMatchers("/user", "/userUpdate", "/passwordUpdate").hasRole("USER")
                 .anyRequest().authenticated());
 
         httpSecurity.csrf(c->c.disable());

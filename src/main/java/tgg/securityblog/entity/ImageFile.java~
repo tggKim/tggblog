@@ -27,14 +27,6 @@ public class ImageFile {
 
     private String savedFilename;
 
-    public void setUploadFilename(String uploadFilename){
-        this.uploadFilename = uploadFilename;
-    }
-
-    public void setSavedFilename(String savedFilename){
-        this.savedFilename = savedFilename;
-    }
-
     public void setUser(User user){
         this.user = user;
         user.addImageFile(this);

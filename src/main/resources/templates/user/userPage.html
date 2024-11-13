@@ -22,20 +22,27 @@
 
         아이디
         <br>
-        <input type="text" name="username" th:field="*{username}" class="form-control form-control-lg" style="margin-top: 5px;" readonly>
+        <input type="text" name="username" th:field="*{username}" class="form-control form-control-lg" style="margin-top: 5px; margin-bottom: 5px;" readonly>
 
         닉네임
         <br>
-        <input type="text" name="username" th:field="*{nickname}" class="form-control form-control-lg" style="margin-top: 5px;" readonly>
+        <input type="text" name="username" th:field="*{nickname}" class="form-control form-control-lg" style="margin-top: 5px; margin-bottom: 5px;" readonly>
 
         email
         <br>
-        <input type="text" name="username" th:field="*{email}" class="form-control form-control-lg" style="margin-top: 5px;" readonly>
+        <input type="text" name="username" th:field="*{email}" class="form-control form-control-lg" style="margin-top: 5px; margin-bottom: 5px;" readonly>
 
+        profile
+        <br>
+        <img th:src="@{/image/{savedFilename}(savedFilename=${user.savedFilename})}" width="150" height="150" style="margin-top: 5px;"/>
 
         <div class="button-container" style="margin-top: 5px;">
             <button type="button" th:onclick="|location.href='@{/userUpdate}'|" class="btn btn-primary btn-lg" style="flex:1">수정</button>
             <button type="button" th:onclick="|location.href='@{/}'|" class="btn btn-secondary btn-lg" style="flex:1">취소</button>
+        </div>
+
+        <div class="button-container" style="margin-top: 5px;">
+            <button type="button" th:onclick="|location.href='@{/passwordUpdate}'|" class="btn btn-primary btn-lg" style="flex:1">비밀번호 변경</button>
         </div>
     </form>
 </div>

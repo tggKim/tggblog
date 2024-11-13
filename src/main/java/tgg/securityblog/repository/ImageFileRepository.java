@@ -6,6 +6,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import tgg.securityblog.entity.ImageFile;
 
+import java.util.Optional;
+
 @Repository
 public interface ImageFileRepository extends JpaRepository<ImageFile, Long> {
 
@@ -13,5 +15,11 @@ public interface ImageFileRepository extends JpaRepository<ImageFile, Long> {
             "FROM ImageFile i " +
             "JOIN i.user u WHERE " +
             "u.username = :username")
-    public String getSavedFilenameByUsername(@Param("username") String username);
+    String getSavedFilenameByUsername(@Param("username") String username);
+
+    @Query("SELECT i " +
+    "FROM ImageFile i " +
+    "JOIN i.user u " +
+    "WHERE u.username = :username")
+    Optional<ImageFile> findByUsername(@Param("username") String username);
 }

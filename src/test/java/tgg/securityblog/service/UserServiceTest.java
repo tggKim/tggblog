@@ -47,11 +47,11 @@ class UserServiceTest {
 
         Assertions.assertThat(userService.existByUsername("scie")).isEqualTo(true);
 
-        userService.updateUserNickname("scie","tgghuhu");
+        userService.updateUserNickname(findUser,"tgghuhu");
         findUser = userService.findUserByUsername("scie");
         Assertions.assertThat(findUser.getNickname()).isEqualTo("tgghuhu");
 
-        userService.updateUserPassword("scie", "12345");
+        userService.updateUserPassword(findUser, "12345");
         findUser = userService.findUserByUsername("scie");
         Assertions.assertThat(passwordEncoder.matches("12345", findUser.getPassword()));
 

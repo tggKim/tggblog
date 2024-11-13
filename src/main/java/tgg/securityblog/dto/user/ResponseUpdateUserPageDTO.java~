@@ -1,0 +1,2 @@
+package tgg.securityblog.dto.user;public class ResponseUpdateUserPageDTO {
+}
