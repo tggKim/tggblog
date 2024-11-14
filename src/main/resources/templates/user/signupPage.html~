@@ -125,8 +125,6 @@
 
         function clickFile(){
             $("#file").removeClass("is-invalid")
-            $("#fileError").removeClass("invalid-feedback")
-            $("#fileError").text("")
         }
     </script>
 </head>
@@ -164,7 +162,7 @@
 
         <div th:if="${#fields.hasGlobalErrors()}">
             <input class="form-control is-invalid" hidden="hidden">
-            <p id="fileError" th:each="err : ${#fields.globalErrors()}" th:text="${err}" class="invalid-feedback" style="margin-bottom: 0;">전체 오류 메시지</p>
+            <p th:each="err : ${#fields.globalErrors()}" th:text="${err}" class="invalid-feedback" style="margin-bottom: 0;">전체 오류 메시지</p>
         </div>
 
         <div class="button-container" style="margin-top: 5px;">

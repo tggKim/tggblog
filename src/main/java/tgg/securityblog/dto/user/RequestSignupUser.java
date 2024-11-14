@@ -11,7 +11,6 @@ import tgg.securityblog.entity.User;
 @Getter @Setter
 public class RequestSignupUser {
 
-    @NotEmpty(message = "아이디를 입력해 주세요")
     private String username;
 
     @NotEmpty(message = "비밀번호를 입력해 주세요")

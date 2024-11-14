@@ -160,11 +160,11 @@ public class UserController {
         return updateOrNot;
     }
 
-//    private void validateDuplicateUsername(String username, BindingResult bindingResult){
-//        if(userService.existByUsername(username)){
-//            bindingResult.rejectValue("username", "duplicateUsername", "중복된 아이디 입니다.");
-//        }
-//    }
+    private void validateDuplicateUsername(String username, BindingResult bindingResult){
+        if(userService.existByUsername(username)){
+            bindingResult.rejectValue("username", "duplicateUsername", "중복된 아이디 입니다.");
+        }
+    }
 
     private void validateDuplicateNickname(String nickname, BindingResult bindingResult){
         if(userService.existByNickname(nickname)){
@@ -179,7 +179,7 @@ public class UserController {
     }
 
     private void validateSignupUser(RequestSignupUser signupUser, BindingResult bindingResult){
-//        validateDuplicateUsername(signupUser.getUsername(), bindingResult);
+        validateDuplicateUsername(signupUser.getUsername(), bindingResult);
 
         validateDuplicateNickname(signupUser.getNickname(), bindingResult);
 
