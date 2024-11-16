@@ -5,10 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
-import tgg.securityblog.entity.ImageFile;
-import tgg.securityblog.entity.User;
-import tgg.securityblog.entity.UserAuthority;
-import tgg.securityblog.entity.UserAuthorityMapping;
+import tgg.securityblog.entity.*;
 import tgg.securityblog.repository.UserRepository;
 import tgg.securityblog.service.ImageFileService;
 import tgg.securityblog.service.UserAuthorityMappingService;
@@ -86,5 +83,11 @@ public class UserAndUserAuthorityInitializer {
         imageFile2.setUser(savedUser2);
         imageFileService.saveImageFile(imageFile2);
 
+        for(int i=0;i<101;i++){
+            Post post = Post.builder()
+                    .title(i+1 + "번째 제목")
+                    .content(i+1 + "번째 내용")
+                    .build();
+        }
     }
 }

@@ -83,8 +83,11 @@ public class UserAndUserAuthorityInitializer {
                 .uploadFileName("basic image")
                 .build();
 
-        imageFile.setUser(savedUser2);
+        imageFile2.setUser(savedUser2);
         imageFileService.saveImageFile(imageFile2);
 
+        for(int i=0;i<101;i++){
+
+        }
     }
 }

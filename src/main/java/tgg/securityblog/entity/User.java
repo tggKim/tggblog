@@ -45,12 +45,19 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<ImageFile> imageFiles = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user")
+    private List<Post> posts = new ArrayList<>();
+
     public void addUserAuthorityMapping(UserAuthorityMapping userAuthorityMapping){
         userAuthorityMappings.add(userAuthorityMapping);
     }
 
     public void addImageFile(ImageFile imageFile){
         imageFiles.add(imageFile);
+    }
+
+    public void addPost(Post post){
+        posts.add(post);
     }
 
     public void setPassword(String password){
