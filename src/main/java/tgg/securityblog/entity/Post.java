@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 public class Post {
 
     @Builder
-    public Post(String title, String content, String){
+    public Post(String title, String content){
         this.title = title;
         this.content = content;
     }
