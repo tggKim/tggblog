@@ -25,7 +25,7 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests(ahr -> ahr
                 .requestMatchers("/test").authenticated()
-                .requestMatchers("/login","/error","/","/message","/css/**","/signup","/username").permitAll()
+                .requestMatchers("/login","/error","/","/message","/css/**","/signup","/username","/post/**").permitAll()
                 .requestMatchers("/user", "/userUpdate", "/passwordUpdate").hasRole("USER")
                 .anyRequest().authenticated());
 
