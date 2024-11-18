@@ -8,12 +8,12 @@ import java.time.LocalDateTime;
 @Getter @Setter
 public class HomePostsResponseDTO {
 
-    public HomePostsResponseDTO(Post post, String nickname){
+    public HomePostsResponseDTO(Post post){
         this.postId = post.getPostId();
         this.viewCount = post.getViewCount();
         this.title = post.getTitle();
         this.createdDate = post.getCreatedDate();
-        this.nickname = nickname;
+        this.nickname = post.getNickname();
     }
 
     private String nickname;

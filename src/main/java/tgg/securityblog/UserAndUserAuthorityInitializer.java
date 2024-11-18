@@ -85,11 +85,13 @@ public class UserAndUserAuthorityInitializer {
             Post post1 = Post.builder()
                     .title("tgg의 " + (i+1) + " 번째 제목")
                     .content("tgg의" + (i+1) + " 번째 내용")
+                    .nickname(user.getNickname())
                     .build();
 
             Post post2 = Post.builder()
                     .title("tgghuhu의 " + (i+1) + " 번째 제목")
                     .content("tgghuhu의" + (i+1) + " 번째 내용")
+                    .nickname(user2.getNickname())
                     .build();
 
             post1.setUser(user);

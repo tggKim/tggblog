@@ -13,6 +13,7 @@ import tgg.securityblog.dto.user.*;
 import tgg.securityblog.entity.ImageFile;
 import tgg.securityblog.entity.User;
 import tgg.securityblog.service.ImageFileService;
+import tgg.securityblog.service.PostService;
 import tgg.securityblog.service.UserService;
 
 import java.util.HashMap;
@@ -23,6 +24,7 @@ import java.util.Map;
 public class UserController {
     private final UserService userService;
     private final ImageFileService imageFileService;
+    private final PostService postService;
 
     @GetMapping("/signup")
     public String signupPage(Model model){
@@ -80,6 +82,7 @@ public class UserController {
 
         if(updateOrNot.contains("nickname")){
             userService.updateUserNickname(user, updateUser.getNickname());
+            postService.updatePostsNickname(user.getUserId(), updateUser.getNickname());
         }
         if(updateOrNot.contains("email")){
             userService.updateUserEmail(user, updateUser.getEmail());

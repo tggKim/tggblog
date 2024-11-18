@@ -16,9 +16,10 @@ import java.time.LocalDateTime;
 public class Post {
 
     @Builder
-    public Post(String title, String content){
+    public Post(String title, String content, String nickname){
         this.title = title;
         this.content = content;
+        this.nickname = nickname;
     }
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +30,8 @@ public class Post {
     private String title;
 
     private String content;
+
+    private String nickname;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userId")
